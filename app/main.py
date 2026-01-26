@@ -1,7 +1,20 @@
 from fastapi import FastAPI
 
-app = FastAPI(title="Backend REST API", version="0.1.0")
+from app.db.session import engine
+from app.db.base import Base
+from app.api.routers.auth import router as auth_router
 
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+def create_app() -> FastAPI:
+    app = FastAPI(title="AMA-BE-REST-API", version="0.2.0")
+
+    @app.get("/health")
+    def health():
+        return {"status": "ok"}
+
+    app.include_router(auth_router)
+    return app
+
+app = create_app()
+
+# Fast DB init
+Base.metadata.create_all(bind=engine)
