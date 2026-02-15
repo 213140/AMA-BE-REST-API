@@ -19,5 +19,5 @@ Alerady done:
 - Password hashing added
 - Added protected items CRUD endpoints
 
-Swagger
-![alt text](image.png)
+Swagger [http://127.0.0.1:8000/docs]
+![alt text](image-1.png)
